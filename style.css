@@ -1,0 +1,223 @@
+/* display: flex
+  Quando um container é flex, quer dizer que os elementos dentro dele ficarão em linha, ocupando o maior espaço que puderem
+
+  O justify-content é um alinhamento horizontal em linha (eixo x):
+    space-evenly:  vai alinhar os itens em linha, respeitando o espaço das bordas e o espaço entre os itens     
+    space-around:  vai alinhar os itens em linha, porém deixando um espaço maior entre os itens e menor nas bordas
+    space-between: vai alinhar os itens em linha, porém não vai deixar espaço nas bordas
+
+  O align-items é um alinhamento vertical (eixo y)
+
+  O flex-direction é a direção do alinhamento:
+    row: padrão, é linha
+    column: coluna, um embaixo do outro
+    row-reverse: mesma coisa do row, porém os elementos são invertidos de posição
+    column-reverse: mesma coisa do column, porém os elementos são invertidos de posição
+*/
+
+/* Tamanhos vh, rem
+  vh 
+    A medida vh é igual a 1/100 da altura da viewport. 
+    Então, por exemplo, se a altura do navegador é 900px, 1vh equivale a 9px
+
+  rem
+    É igual ao tamanho da fonte fixada ao elemento-raiz vezes a quantidade informada.
+    Exemplo:
+      HTML
+        <body> 
+          <div class="test">Test</div>
+        </body>
+
+      CSS
+        body { 
+          font-size: 14px;
+        } 
+        
+        .test { 
+          font-size: 1.2em; // calculado como 14px * 1.2, ou 16.8px
+        }
+*/
+
+/* nth-child() - seletor css
+  .group:nth-child(1) vai pegar o primeiro elemento com a classe .group do HTML, 
+  assim desconsiderando qualquer outro elemento com a mesma classe. 
+  Esse seletor tem como vantagem colocar css específico a um elemento que possui uma classe 
+  que outros elementos usam, sem precisar criar uma classe apenas para atribuir esses css específicos.
+ */
+
+/* Resetar estilos para evitar problemas durante o desenvolvimento */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgb(243, 243, 243); /* cinza gelo */
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  justify-content: center; 
+}
+
+.instagram-wrapper {
+  width: 60%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone {
+  width: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone img {
+  height: 50rem;
+}
+
+.continue {
+  width: 50%;
+  min-height: 34rem;
+
+  display: flex;
+  flex-direction: column; /* inverte a direção de posicionamento */
+  align-items: center; /* agora está na horizontal */
+  justify-content: space-around; /* agora está na vertical - as bordas passam a ser as partes de cima e de baixo */
+}
+
+.group {
+  width: 100%;
+  padding: 1.3rem 0; /* padding em cima e em baixo, e 0 dos lados */
+  background-color: white;
+  border: 1px solid lightgray; /* linha em volta dos quadrados das 2 divs de login com a mesma cor do fundo da página */
+
+  display: flex;
+  flex-direction: column; /* inverte a direção de posicionamento */
+  align-items: center; /* agora está na horizontal */
+  justify-content: space-between; /* agora está na vertical - as bordas passam a ser as partes de cima e de baixo */
+}
+
+.group:nth-child(1) {
+  min-height: 19rem;
+}
+
+.logo {
+  height: 3rem;
+}
+
+.profile-photo {
+  border-radius: 50%; /* a imagem do perfil fica dentro de um círculo */
+  overflow: hidden; /* esconde o restante da imagem para que não ultrapasse o limite da div / testar com outros valores para ver a diferença */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-photo img {
+  height: 6rem;
+}
+
+.login {
+  background-color: #0095f6; /* cor do fundo - como se fosse um botão */
+  color: white; /* cor do texto */
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.logout {
+  color: #0095f6;
+  margin-top: 1rem;
+}
+
+.not-account {
+  color: rgb(160, 160, 160); /* cor do texto meio cinza escuro */
+}
+
+.link-blue {
+  color: #0095f6;
+}
+
+.get-the-app {
+  width: 100%;
+  padding: 1.3rem 0; /* apenas em cima e em baixo, não dos lados */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* alinhamento horizontal (eixo x) */
+  align-items: center; /* alinhamento vertical (eixo y) */
+}
+
+.download {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row; /* Já é o padrão, mas coloquei para ficar explícito */
+  justify-content: space-evenly; /* alinha os itens na horizontal, respeitando o espaço das bordas e o espaço entre os itens */
+  align-items: center;
+  padding: 1rem;
+}
+
+.app-download {
+  /* espaço do background */
+  height: 3rem;
+  width: 10rem;
+
+  /* background-size = especifica o tamanho de background images */
+  /* background-size: cover = faz com que a imagem preencha o espaço do background */
+  background-size: cover;
+}
+
+.app-download:nth-child(1) {
+  background-image: url(./img/apple-button.png);
+}
+
+.app-download:nth-child(2) {
+  background-image: url(./img/googleplay-button.png);
+}
+
+
+
+/*** RESPONSIVIDADE - media queries ***/
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .instagram-wrapper {
+    width: 90%; /* Não vai deixar as 2 divs principais phone e continue se colarem */
+  }
+}
+
+/* Celular - deve ficar parecido com a imagem-base-celular */
+@media (max-width: 650px) {
+  .instagram-wrapper {
+    width: 90%; /* Não vai deixar as 2 divs principais phone e continue se colarem */
+  }
+
+  .phone {
+    display: none; /* Oculta a div da imagem do celular, para que apenas a div do login apareça */
+  }
+
+  .continue {
+    width: 100%; /* Como a div do celular foi ocultada, a div do login deve ocupar todo o espaço */
+  }
+
+  body {
+    background-color: white; /* O fundo da tela passa a ser branco, tal como no original (imagem-base-celular)  */
+  }
+
+  .group {
+    border: transparent; /* Como o fundo da tela está com a mesma cor do background dessas divs, o border é desnecessário */
+  }
+}
